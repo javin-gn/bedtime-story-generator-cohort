@@ -9,16 +9,9 @@ Backend bytes don't move in this module. The whole change is in `app/templates/i
 ## Run
 
 ```bash
-# from inside this folder (dist/module_05_story_ui/):
-
-# macOS / Linux:
+# from inside this folder (dist/module_05_story_ui/) — macOS / Linux / WSL2 Ubuntu:
 source ../../venv/bin/activate    # only if (venv) isn't already active
 cp .env.example .env              # if you don't already have one in this folder
-
-# Windows (PowerShell):
-..\..\venv\Scripts\Activate.ps1
-Copy-Item .env.example .env
-
 uvicorn app.main:app --reload
 ```
 

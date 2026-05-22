@@ -11,15 +11,9 @@ The system prompt also moves out of `app/services/gemini_service.py` and into it
 ## Run
 
 ```bash
-# from inside this folder (dist/module_04_safety_system_prompt/):
-
-# macOS / Linux:
+# from inside this folder (dist/module_04_safety_system_prompt/) — macOS / Linux / WSL2 Ubuntu:
 source ../../venv/bin/activate    # only if (venv) isn't already active
 cp .env.example .env              # if you don't already have one in this folder
-
-# Windows (PowerShell):
-..\..\venv\Scripts\Activate.ps1
-Copy-Item .env.example .env
 
 # No new dependencies, no schema migration.
 uvicorn app.main:app --reload

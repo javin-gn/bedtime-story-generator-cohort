@@ -13,17 +13,10 @@ The codebase splits into two: `frontend/` (what Vercel deploys — three static 
 The "uvicorn serves everything" workflow from earlier modules is gone. Local dev now uses **two terminals**, both inside this dist folder:
 
 ```bash
-# Terminal 1 — backend on :8000
-# macOS / Linux:
+# Terminal 1 — backend on :8000 (macOS / Linux / WSL2 Ubuntu — same commands):
 cd dist/module_07_deploy_vercel    # only if not already here
 source ../../venv/bin/activate     # only if (venv) isn't already active
 cp .env.example .env               # if you don't already have one in this folder
-uvicorn app.main:app --reload
-
-# Windows (PowerShell):
-cd dist\module_07_deploy_vercel
-..\..\venv\Scripts\Activate.ps1
-Copy-Item .env.example .env
 uvicorn app.main:app --reload
 
 # Terminal 2 — frontend on :5173 (any unused port works)

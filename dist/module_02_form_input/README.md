@@ -9,17 +9,11 @@ The Module 1 app called Gemini with a single string the user typed into a textar
 ## Run
 
 ```bash
-# from inside this folder (dist/module_02_form_input/):
-
-# macOS / Linux:
+# from inside this folder (dist/module_02_form_input/) — macOS / Linux / WSL2 Ubuntu:
 source ../../venv/bin/activate    # only if (venv) isn't already active
 cp .env.example .env              # if you don't already have one in this folder
 
-# Windows (PowerShell):
-..\..\venv\Scripts\Activate.ps1
-Copy-Item .env.example .env
-
-# No new dependencies (deps come from the master-root union venv); no schema migration.
+# No new dependencies (deps come from the repo-root union venv); no schema migration.
 uvicorn app.main:app --reload
 ```
 

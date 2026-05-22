@@ -21,7 +21,7 @@ slides/
 scripts/
 .module-drafts/
 INSTRUCTOR_GUIDE.md
-WINDOWS_VALIDATOR_BRIEF.md
+WSL2_VALIDATOR_BRIEF.md
 bedtime_story_generator_prd_v1.md
 AGENTS.md
 README.md

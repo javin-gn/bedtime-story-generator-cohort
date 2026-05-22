@@ -19,16 +19,11 @@ Module 1 deletes the Ollama wiring; Module 2 deletes the textarea; Module 6 drop
 From this folder, with the shared venv at the repo root already created and dependencies installed (see the cohort `README.md`):
 
 ```bash
-# macOS / Linux:
 source ../../venv/bin/activate    # only needed if (venv) isn't already in your prompt
 cp .env.example .env              # required — app uses load_dotenv() and will KeyError without it
 uvicorn app.main:app --reload
-
-# Windows (PowerShell):
-..\..\venv\Scripts\Activate.ps1
-Copy-Item .env.example .env
-uvicorn app.main:app --reload
 ```
+(macOS / Linux / WSL2 Ubuntu — same commands.)
 
 `.env.example` already has the three V1 vars filled in with sensible local defaults (`DATABASE_URL`, `OLLAMA_BASE_URL`, `OLLAMA_MODEL`). If your local Postgres uses a different `postgres` password, edit `DATABASE_URL` in `.env` to match. Otherwise leave the file as-is.
 
@@ -39,9 +34,9 @@ uvicorn app.main:app --reload
 The host environment (Postgres running, Ollama running, model pulled, table present) is what matters in Module 0. From this folder OR from the repo root, run:
 
 ```bash
-./scripts/verify_setup.sh         # macOS / Linux
-.\scripts\verify_setup.ps1        # Windows PowerShell
+./scripts/verify_setup.sh
 ```
+(macOS / Linux / WSL2 Ubuntu — same command.)
 
 Expected: every check green, ending with *"All checks passed. You're ready for Module 1."*
 
@@ -71,7 +66,7 @@ You'll get an AI partner (Antigravity, Cursor, Claude Code) loaded with `AGENTS.
 > Walk me through what `verify_setup.sh` is checking, in execution order. Don't tell me the fix for any failure — just tell me what each line is verifying and why that probe is in the script.
 
 **Predict before you run:**
-> If I stopped Postgres right now (`brew services stop postgresql@16`), what's the first error message I'd see? Where does it surface — at uvicorn startup, on first request, or only when I hit `/ask`? Trace through `app/main.py` and `app/services/interaction_service.py` to predict, then I'll actually stop Postgres and we'll compare.
+> If I stopped Postgres right now (`brew services stop postgresql@17`), what's the first error message I'd see? Where does it surface — at uvicorn startup, on first request, or only when I hit `/ask`? Trace through `app/main.py` and `app/services/interaction_service.py` to predict, then I'll actually stop Postgres and we'll compare.
 
 **About the V1 loud-fail you already shipped:**
 > `app/services/ollama_service.py` line 5 reads `OLLAMA_BASE_URL = os.environ["OLLAMA_BASE_URL"]` at module import time. Why is that more honest than `os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")` even though the second form has a sensible default? Argue both sides, then tell me which side V1's Module 8 doctrine took and why.

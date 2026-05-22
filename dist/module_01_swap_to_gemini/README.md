@@ -11,18 +11,10 @@ The app you ran in Module 0 talked to Ollama over `http://localhost:11434` using
 Get a free Gemini API key at <https://aistudio.google.com/apikey> first.
 
 ```bash
-# from inside this folder (dist/module_01_swap_to_gemini/):
-
-# macOS / Linux:
+# from inside this folder (dist/module_01_swap_to_gemini/) — macOS / Linux / WSL2 Ubuntu:
 source ../../venv/bin/activate    # only if (venv) isn't already in your prompt
 cp .env.example .env              # this folder's contract: GEMINI_API_KEY-only (Ollama vars gone)
 # edit .env to paste your real key from https://aistudio.google.com/apikey
-
-# Windows (PowerShell):
-..\..\venv\Scripts\Activate.ps1
-Copy-Item .env.example .env
-# edit .env to paste your key
-
 uvicorn app.main:app --reload
 ```
 

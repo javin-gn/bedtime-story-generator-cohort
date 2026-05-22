@@ -28,7 +28,7 @@ ok "requirements.txt present"
 
 # 4. Postgres reachable.
 pg_isready -h localhost -p 5432 >/dev/null 2>&1 \
-    || fail "Postgres not reachable at localhost:5432. Start it: brew services start postgresql@16 (macOS) | sudo systemctl start postgresql (Linux)"
+    || fail "Postgres not reachable at localhost:5432. Start it: brew services start postgresql@17 (macOS) | sudo systemctl start postgresql (Linux)"
 ok "Postgres reachable at localhost:5432"
 
 # 5. Database llm_question_log reachable as the app will connect.

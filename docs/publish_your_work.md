@@ -36,14 +36,10 @@ Before pushing anything to a public repo, confirm:
 ### 1. Move the folder you're publishing OUT of the cohort clone
 
 ```bash
-# macOS / Linux:
 cp -R <cohort-clone>/dist/module_07_deploy_vercel ~/bedtime-story-generator
 cd ~/bedtime-story-generator
-
-# Windows (PowerShell):
-Copy-Item -Recurse <cohort-clone>\dist\module_07_deploy_vercel C:\dev\bedtime-story-generator
-cd C:\dev\bedtime-story-generator
 ```
+(macOS / Linux / WSL2 Ubuntu — same commands. On WSL2, `~/bedtime-story-generator` is `/home/<your-username>/bedtime-story-generator` inside Ubuntu — NOT `/mnt/c/`.)
 
 The folder name (`bedtime-story-generator` above) becomes your repo name later. Pick a name that signals *"this is mine"* — `bedtime-story-generator-aisha`, `bedtime-stories-app`, `lily-bedtime-app`, whatever fits. Avoid names that imply you wrote a generic library (`bedtime-story-lib`).
 
@@ -103,12 +99,12 @@ Requires Python 3.11+, Postgres, and a free Google AI Studio API key (<https://a
 
 ```bash
 # 1. Setup
-python3.11 -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\Activate.ps1
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 
 # 2. Configure
-cp .env.example .env              # Windows: Copy-Item .env.example .env
+cp .env.example .env
 # Edit .env: paste your real GEMINI_API_KEY; DATABASE_URL stays as the local default
 
 # 3. Database
@@ -150,14 +146,10 @@ Save it as `README.md` in your new folder, replacing the existing file. **Edit t
 Two extra files to remove from your portfolio repo (they're course artifacts, not portfolio artifacts):
 
 ```bash
-# macOS / Linux:
 rm -f scripts/verify_module_7.sh
 rm -rf .claude .cursor .vscode    # any IDE-specific cache that snuck in
-
-# Windows (PowerShell):
-Remove-Item -Force scripts\verify_module_7.sh -ErrorAction SilentlyContinue
-Remove-Item -Recurse -Force .claude, .cursor, .vscode -ErrorAction SilentlyContinue
 ```
+(macOS / Linux / WSL2 Ubuntu — same commands.)
 
 The verify scripts and `scripts/verify_setup.{sh,ps1}` are fine to keep — they're useful for anyone running your repo locally. But the `verify_module_7.sh` specifically references the curriculum's regression checks, which a recruiter looking at your portfolio doesn't need.
 
@@ -167,13 +159,11 @@ You're publishing this folder as its own repo with no inherited history.
 
 ```bash
 # Confirm you're in the right folder:
-pwd                                    # macOS / Linux
-# Get-Location                         # Windows (PowerShell)
+pwd
 # Should print something ending in your-app-name, NOT bedtime-story-generator (cohort)
 
 # Remove any existing .git/ that might be there from being inside the cohort clone:
-rm -rf .git                            # macOS / Linux
-# Remove-Item -Recurse -Force .git     # Windows (PowerShell)
+rm -rf .git
 
 # Fresh init
 git init

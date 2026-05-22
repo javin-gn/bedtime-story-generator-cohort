@@ -9,15 +9,9 @@ Persistence comes back. The V1 `interactions` table — dead in the codebase sin
 ## Run
 
 ```bash
-# from inside this folder (dist/module_06_story_library/):
-
-# macOS / Linux:
+# from inside this folder (dist/module_06_story_library/) — macOS / Linux / WSL2 Ubuntu:
 source ../../venv/bin/activate    # only if (venv) isn't already active
 cp .env.example .env              # if you don't already have one in this folder
-
-# Windows (PowerShell):
-..\..\venv\Scripts\Activate.ps1
-Copy-Item .env.example .env
 
 # One-time migration: DROP interactions, CREATE stories. Requires $DATABASE_URL
 # exported in your shell — not just present in .env. If $DATABASE_URL isn't set:

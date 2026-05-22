@@ -23,7 +23,7 @@ The five things you need:
 | # | What | Why |
 |---|---|---|
 | 1 | **Python 3.11+** | The web server runtime. Carries from V1. |
-| 2 | **Postgres 16+** | Where stories will be persisted (Module 6 onwards). The V1 `interactions` table carries through Modules 0–5. |
+| 2 | **Postgres 17** | Where stories will be persisted (Module 6 onwards). The V1 `interactions` table carries through Modules 0–5. |
 | 3 | **Ollama** with the `llama3.2` model pulled (~2 GB) | Module 0 only — the V1 baseline still uses it. Module 1 replaces it with the Gemini API; you can stop Ollama from then on. |
 | 4 | **[Google Antigravity](https://antigravity.google)** signed in with Gemini enabled | Your IDE for the course. Gemini is your in-editor AI partner. |
 | 5 | **Google AI Studio API key** for Gemini (free tier) — get one at <https://aistudio.google.com/apikey> | The hosted LLM your app will call from Module 1 onwards. Save the key somewhere only you can see it. |
@@ -36,40 +36,25 @@ You don't need either of these for the first six modules. Sign up the morning of
 
 The pre-flight install above is what you need. Don't skip the database-creation and schema-apply steps — those produce the most common Day-1 failures.
 
-### Clone this repo to a sane path
+### Clone this repo
 
 ```bash
-# macOS / Linux:
-git clone https://github.com/SwarupSG/bedtime-story-generator-cohort.git
-cd bedtime-story-generator-cohort
-
-# Windows (PowerShell) — use a SHORT path, NOT Documents/Desktop/OneDrive:
-mkdir C:\dev    # or C:\code — create it if needed
-cd C:\dev
 git clone https://github.com/SwarupSG/bedtime-story-generator-cohort.git
 cd bedtime-story-generator-cohort
 ```
+(macOS / Linux / WSL2 Ubuntu — same commands.)
 
-(Why a short path on Windows? OneDrive's silent online-only file marking, the 260-character path limit, and spaces in user folders all break Python's `psycopg[binary]`.)
+> **Windows learners:** do this *inside an Ubuntu terminal* (your WSL2 environment from the FastAPI course), NOT native PowerShell. Clone into `~/code/` (Ubuntu's native filesystem) — not `/mnt/c/...`. The cross-filesystem bridge is 10–50× slower for `pip install` and `psycopg[binary]`. If you accidentally clone into `/mnt/c/`, just re-clone into `~/code/`.
 
 ### Set up the shared venv (once per machine)
 
 The shared `venv/` lives at the cohort repo root. Every dist folder activates it via `../../venv/bin/activate`.
 
 ```bash
-# macOS / Linux:
-python3.11 -m venv venv
+python3 -m venv venv
 source venv/bin/activate
-
-# Windows (PowerShell):
-python -m venv venv
-venv\Scripts\Activate.ps1
 ```
-
-If Windows says *"Activate.ps1 cannot be loaded because running scripts is disabled"*, run once per user account:
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
+(macOS / Linux / WSL2 Ubuntu — same commands. The `(venv)` prefix in your prompt is the visual confirmation.)
 
 Then install **all** course dependencies in one shot. The root `requirements.txt` is the union of every module's deps:
 
@@ -84,12 +69,9 @@ That's it for Python packages — you won't `pip install` again for the rest of 
 Binary on PATH ≠ service running. From the cohort repo root with the venv active:
 
 ```bash
-# macOS / Linux:
 ./scripts/verify_setup.sh
-
-# Windows (PowerShell):
-.\scripts\verify_setup.ps1
 ```
+(macOS / Linux / WSL2 Ubuntu — same command. Run from inside your Ubuntu terminal for WSL2.)
 
 Every check green, ending with *"All checks passed. You're ready for Module 1."* means you're ready. Each ✗ line tells you the exact one-line command to fix it.
 
