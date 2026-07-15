@@ -21,5 +21,17 @@ def call_gemini(question: str) -> str:
             config=generate_config,
         )
         return response.text
-    except genai_errors.APIError:
-        raise HTTPException(status_code=502, detail="Gemini is not reachable.")
+    except genai_errors.APIError as e:
+        # ---> THIS WILL PRINT THE REAL ERROR IN YOUR TERMINAL <---
+        print("\n" + "="*50)
+        print("🔍 GOOGLE GEMINI API ERROR DETECTED:")
+        print(f"Status Code: {e.code}")
+        print(f"Message: {e.message}")
+        print("="*50 + "\n")
+        
+        # Propagate the actual message down so you see it in Postman/Browser
+        raise HTTPException(
+            status_code=502, 
+            detail=f"Gemini rejected request: Code {e.code} - {e.message}"
+        )
+
